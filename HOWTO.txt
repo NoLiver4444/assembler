@@ -7,6 +7,13 @@
 Создайте файл программы, например test.asm: load 468; read 15; write 224; sgn. Запустите ассемблер в тестовом режиме:
 python assembler.py test_sgn.asm test.bin --test
 
+
+
+python assembler.py test_all_commands.asm test.bin --test
+
+python assembler.py demo.asm demo.bin
+python interpreter.py demo.bin --dump result.json --range 95 105 --verbose
+
 ЭТАП 3: ИНТЕРПРЕТАТОР С РАЗДЕЛЁННОЙ ПАМЯТЬЮ
 
 Используйте программу copy_array.asm (копирование массива). Ассемблируйте:
