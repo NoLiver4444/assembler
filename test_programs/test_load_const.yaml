@@ -1,0 +1,3 @@
+program:
+  - op: load
+    operand: 468  # 0x1D4 в шестнадцатеричном

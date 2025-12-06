@@ -1,0 +1,4 @@
+program:
+  - op: load
+    operand: 50   # Адрес для чтения знака
+  - op: sgn

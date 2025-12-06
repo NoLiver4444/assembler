@@ -1,0 +1,5 @@
+program:
+  - op: load
+    operand: 42   # Значение для записи
+  - op: write
+    operand: 224  # Адрес для записи

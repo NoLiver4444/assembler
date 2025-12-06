@@ -1,0 +1,21 @@
+program:
+  # Загрузка констант
+  - op: load
+    operand: 100
+  - op: load
+    operand: 200
+
+  # Чтение из памяти
+  - op: read
+    operand: 10
+
+  # Запись в память
+  - op: load
+    operand: 255
+  - op: write
+    operand: 300
+
+  # Операция sgn
+  - op: load
+    operand: 150
+  - op: sgn

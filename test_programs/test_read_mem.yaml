@@ -1,0 +1,5 @@
+program:
+  - op: load
+    operand: 100  # Адрес для чтения
+  - op: read
+    operand: 15   # Смещение

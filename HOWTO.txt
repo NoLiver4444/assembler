@@ -1,0 +1,23 @@
+ПОШАГОВАЯ ИНСТРУКЦИЯ ПО ЗАПУСКУ ПО ЭТАПАМ
+
+Требования: Python 3.7+; (опционально) PyYAML: pip install pyyaml
+
+ЭТАП 1–2: АССЕМБЛЕР
+
+Создайте файл программы, например test.asm: load 468; read 15; write 224; sgn. Запустите ассемблер в тестовом режиме: python assembler.py test.asm test.bin --test. Выведет внутреннее представление и байтовую последовательность в формате спецификации: 0x4A, 0xD4, 0x01, 0x00, 0x00 и т.д. Без --test — только сохранит test.bin.
+
+ЭТАП 3: ИНТЕРПРЕТАТОР С РАЗДЕЛЁННОЙ ПАМЯТЬЮ
+
+Используйте программу copy_array.asm (копирование массива). Ассемблируйте: python assembler.py copy_array.asm copy_array.bin. Запустите интерпретатор с дампом: python interpreter.py copy_array.bin --dump copy_dump.json --range 95 110 --verbose. Проверьте файл copy_dump.json — адреса 100–104 должны содержать [10,20,30,40,50].
+
+ЭТАП 4: ТЕСТ SGN()
+
+Используйте test_sgn.asm. Выполните: python assembler.py test_sgn.asm test_sgn.bin; python interpreter.py test_sgn.bin --dump sgn_result.json --range 100 105 --verbose. В sgn_result.json: 100: 0; 101: 1; 102: 255 (это -1, записанный как байт).
+
+ЭТАП 5: ТЕСТОВАЯ ЗАДАЧА (ВЕКТОР ИЗ 6 ЭЛЕМЕНТОВ)
+
+Запустите три теста: Тест 1 (все нули): python assembler.py sgn_zeros.asm sgn_zeros.bin; python interpreter.py sgn_zeros.bin --dump res1.json --range 100 106. Тест 2 (смешанные значения): python assembler.py sgn_mixed.asm sgn_mixed.bin; python interpreter.py sgn_mixed.bin --dump res2.json --range 100 106. Тест 3 (все отрицательные): python assembler.py sgn_negatives.asm sgn_negatives.bin; python interpreter.py sgn_negatives.bin --dump res3.json --range 100 106. Проверьте дампы: res1.json — все значения = 0; res2.json — [1, 255, 0, 1, 255, 255]; res3.json — все значения = 255.
+
+БЫСТРЫЙ ТЕСТ ВСЕГО ПРОЕКТА
+
+Выполните: python run.py — запустит ассемблер и интерпретатор на всех ключевых тестах.
