@@ -123,7 +123,7 @@ class UVMInterpreter:
             else:
                 raise RuntimeError(f"Unknown opcode: 0x{opcode:02X} at IP=0x{start_ip:04X}")
 
-        print(f"\n✅ Execution finished. Instructions executed: {instruction_count}")
+        print(f"\nExecution finished. Instructions executed: {instruction_count}")
 
     def save_memory_dump(self, filepath: str, start: int, end: int):
         """Save data memory dump to JSON"""
@@ -146,7 +146,7 @@ class UVMInterpreter:
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(output, f, indent=2, ensure_ascii=False)
 
-        print(f"💾 Data memory dump saved to: {filepath} (addresses {start}-{end-1})")
+        print(f"Data memory dump saved to: {filepath} (addresses {start}-{end-1})")
 
 
 def main():
@@ -166,7 +166,7 @@ def main():
         with open(args.binary_file, 'rb') as f:
             binary_data = f.read()
 
-        print(f"📂 Reading program: {args.binary_file} ({len(binary_data)} bytes)")
+        print(f"Reading program: {args.binary_file} ({len(binary_data)} bytes)")
 
         # Initialize and run interpreter
         interpreter = UVMInterpreter(data_memory_size=1024)
@@ -179,10 +179,10 @@ def main():
             interpreter.save_memory_dump(args.dump, start, end)
 
         # Show final stack
-        print(f"\n📊 Final stack: {interpreter.stack}")
+        print(f"\nFinal stack: {interpreter.stack}")
 
     except Exception as e:
-        print(f"❌ Execution error: {e}", file=sys.stderr)
+        print(f"Execution error: {e}", file=sys.stderr)
         sys.exit(1)
 
 
